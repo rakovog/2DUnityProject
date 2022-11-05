@@ -10,6 +10,8 @@ public class PlyerController : MonoBehaviour
     [SerializeField] private Image[] lives; // массив максимальное количество жизней
     [SerializeField] private int health; // текущее количество жизней
     [SerializeField] private int num0Lives;// количество жизней всего
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject win;
 
     void Start()
     {
@@ -36,17 +38,47 @@ public class PlyerController : MonoBehaviour
         {
             health = num0Lives; 
         }
+        if (transform.position.y < -10)
+        {
+            Dead();
+        }
 
     }
     public void ChengeHealth(int count)
     {
         health += count;
+
+        if (health <= 0)
+        {
+            Dead();
+        }   
+    }
+    private void Dead()
+    {
+        gameOver.SetActive(true);
+        GetComponent<Player_Move>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    private void Win()
+    {
+        win.SetActive(true);
+        GetComponent<Player_Move>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             ChengeHealth(-1);
+        }
+        if (collision.CompareTag("Hill"))
+        {
+            ChengeHealth(+1);
+            Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("Finish"))
+        {
+            Win();
         }
     }
 }
