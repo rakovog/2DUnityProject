@@ -7,8 +7,10 @@ TagManager:
   - BigCoin
   - Coin
   - Enemy
-  - Thorn
   - Hill
+  - AntiCoin
+  - BigHill
+  - Teleport
   layers:
   - Default
   - TransparentFX

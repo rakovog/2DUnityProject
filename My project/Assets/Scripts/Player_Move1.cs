@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player_Move : MonoBehaviour
+public class Player_Move1 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
@@ -96,15 +96,10 @@ public class Player_Move : MonoBehaviour
             thornText.text = mace.ToString();
             Destroy(collision.gameObject);
         }
-        if (collision.CompareTag("Teleport"))
+        if (coin == 6)
         {
             transform.position = Axis;
-            transform.position = new Vector3(34,12,0);
-        }
-        if (collision.CompareTag("Teleport1"))
-        {
-            transform.position = Axis;
-            transform.position = new Vector3(16,27,0);
+            transform.position = new Vector3(-6,34,0);
         }
     }
 
