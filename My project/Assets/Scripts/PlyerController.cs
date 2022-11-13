@@ -12,7 +12,6 @@ public class PlyerController : MonoBehaviour
     [SerializeField] private int num0Lives;// количество жизней всего
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject win;
-    [SerializeField] private GameObject Heart4;
 
     void Start()
     {
@@ -68,6 +67,7 @@ public class PlyerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("Enemy"))
         {
             ChengeHealth(-1);
@@ -75,13 +75,13 @@ public class PlyerController : MonoBehaviour
         if (collision.CompareTag("Hill"))
         {
             ChengeHealth(+1);
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 2);
         }
         if (collision.CompareTag("BigHill"))
         {
-            ChengeHealth(+3);
-            Heart4.SetActive(true);    
-            Destroy(collision.gameObject);
+            num0Lives += 1;
+            health = num0Lives;
+            Destroy(collision.gameObject, 3);
         }
         if (collision.CompareTag("Finish"))
         {

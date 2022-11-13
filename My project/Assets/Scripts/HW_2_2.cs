@@ -14,7 +14,7 @@ public class HW_2_2 : MonoBehaviour
 
     void Update()
     {
-        transform.position = Axis;
+
         if(transform.position.z < 5);
         {
             transform.position = new Vector3(10,0,0);

@@ -34,7 +34,8 @@ public class Player_Move : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {    
             rb.velocity = Vector2.up * jumpForce;
-            anim.SetTrigger("Jump"); 
+            anim.SetTrigger("Jump");
+            GetComponent<AudioSource>().Play();
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -80,13 +81,13 @@ public class Player_Move : MonoBehaviour
         {
             coin += 1;
             scoreText.text = coin.ToString();
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 1);
         }
         if(collision.CompareTag("BigCoin"))
         {
             coin += 3;
             scoreText.text = coin.ToString();
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 1);
         }
         if(collision.CompareTag("AntiCoin"))
         {
@@ -98,6 +99,7 @@ public class Player_Move : MonoBehaviour
         }
         if (collision.CompareTag("Teleport"))
         {
+            
             transform.position = Axis;
             transform.position = new Vector3(34,12,0);
         }

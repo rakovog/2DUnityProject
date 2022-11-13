@@ -35,6 +35,7 @@ public class Player_Move1 : MonoBehaviour
         {    
             rb.velocity = Vector2.up * jumpForce;
             anim.SetTrigger("Jump"); 
+            GetComponent<AudioSource>().Play();
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -80,13 +81,13 @@ public class Player_Move1 : MonoBehaviour
         {
             coin += 1;
             scoreText.text = coin.ToString();
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 1);
         }
         if(collision.CompareTag("BigCoin"))
         {
             coin += 3;
             scoreText.text = coin.ToString();
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 1);
         }
         if(collision.CompareTag("AntiCoin"))
         {
